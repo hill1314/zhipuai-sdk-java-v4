@@ -61,6 +61,7 @@ public class ClientV4 {
         paramsMap.put("model", request.getModel());
         paramsMap.put("stream", true);
         paramsMap.put("tools", request.getTools());
+        //
         paramsMap.put("tool_choice", request.getToolChoice());
         paramsMap.put("temperature", request.getTemperature());
         paramsMap.put("top_p", request.getTopP());

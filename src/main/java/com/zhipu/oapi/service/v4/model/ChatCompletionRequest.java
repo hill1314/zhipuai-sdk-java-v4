@@ -92,6 +92,9 @@ public class ChatCompletionRequest {
 
     /**
      * 指定调用一个特定函数
+     * 1. 默认为 auto，模型根据上下文信息自行选择是否返回函数调用
+     * 2. 将其设置为 {"name": "your_function_name"} 时，可以强制 API 返回特定函数的调用。
+     * 3. 还可以通过将 tool_choice 参数设置为 "none" 来强制 API 不返回任何函数的调用
      */
     private  Object toolChoice;
 

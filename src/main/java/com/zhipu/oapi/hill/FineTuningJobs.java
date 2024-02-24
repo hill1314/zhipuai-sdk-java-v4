@@ -9,6 +9,7 @@ import com.zhipu.oapi.service.v4.fine_turning.*;
 
 /**
  * 微调作业SDK
+ * https://open.bigmodel.cn/dev/api#file-management
  *
  * @Author huleilei9
  * @Date 2024/2/24

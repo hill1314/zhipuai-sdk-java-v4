@@ -137,21 +137,21 @@ public class SseChat {
         ChatMessage chatMessage = new ChatMessage(ChatMessageRole.USER.value(), question);
         messages.add(chatMessage);
 
-        // 函数调用参数构建部分
-        List<ChatTool> chatToolList = new ArrayList<>();
-        ChatTool chatTool = new ChatTool();
-        chatTool.setType(ChatToolType.FUNCTION.value());
+        // 函数调用参数构建部分  官网资料：https://open.bigmodel.cn/dev/howuse/functioncall
         ChatFunctionParameters chatFunctionParameters = new ChatFunctionParameters();
         chatFunctionParameters.setType("object");
         chatFunctionParameters.setProperties(properties);
 
+        //函数
         ChatFunction chatFunction = ChatFunction.builder()
                 .name("get_weather")
                 .description("Get the current weather of a location")
                 .parameters(chatFunctionParameters)
                 .build();
+
+        ChatTool chatTool = new ChatTool();
+        chatTool.setType(ChatToolType.FUNCTION.value());
         chatTool.setFunction(chatFunction);
-        chatToolList.add(chatTool);
 
         ChatCompletionRequest chatCompletionRequest = ChatCompletionRequest.builder()
                 .model(Constants.ModelChatGLM4)
@@ -159,7 +159,8 @@ public class SseChat {
                 .invokeMethod(Constants.invokeMethod)
                 .messages(messages)
                 .requestId(requestId)
-                .tools(chatToolList)
+                //可供模型调用的函数工具列表
+                .tools(CollectionUtil.newArrayList(chatTool))
                 .toolChoice("auto")
                 .build();
 

@@ -12,6 +12,10 @@ import lombok.NoArgsConstructor;
 @Data
 public class ChatTool {
 
+    /**
+     * 类型
+     * @see ChatToolType
+     */
     private String type;
 
     private ChatFunction function;
